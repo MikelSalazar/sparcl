@@ -1,3 +1,9 @@
+---
+layout: default
+title: Welcome to spARcl
+nav_order: 1
+---
+
 # Welcome to spARcl
 
 spARcl is a proof of concept and experimentation platform for the Open Spatial Computing platform (OSCP) defined by the Open AR Cloud association. OSCP allows sparcl to be used anywhere services supporting the platform are available. 
