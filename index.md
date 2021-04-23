@@ -2,6 +2,8 @@
 
 spARcl is a proof of concept and experimentation platform for the Open Spatial Computing platform (OSCP) defined by the Open AR Cloud association. OSCP allows sparcl to be used anywhere services supporting the platform are available. 
 
+![01__ 2021 __ Open AR Cloud Europe English](https://user-images.githubusercontent.com/231274/115872403-0eead580-a442-11eb-8989-91e462c64cfd.png)
+
 sparcl as such is more or less a 3D viewer application, specialized for the requirements of an AR Cloud environment. The main parts providing sparcl's functionality are:
 
 * [GeoPose](https://github.com/opengeospatial/GeoPose), an emerging standard under development in the Open Geospatial Consortium that when implemented will permit components and services to obtain, save/record, share and communicate geospatial position and orientation of any real or virtual objects with 6 degrees of freedom in a consistent fashion. GeoPose Draft Specification
