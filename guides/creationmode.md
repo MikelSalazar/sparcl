@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Creator Mode
+title: Content Creation Mode
 parent: Guides
 nav_order: 2
 ---
