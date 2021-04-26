@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Dictionary
+title: Glossary
 nav_order: 100
 ---
 
