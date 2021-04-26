@@ -12,6 +12,8 @@ sparcl's functionality depends on online services to be available and configured
 ### Content creation mode
 [Special mode](/sparcl/guides/creationmode.html) for use during content creation, to make it very easy to see the content in an AR environment. In this mode sparcl is served from a local server, offering a text field for the URL of the content to display.
 
+### Dashboard
+
 ### Development mode
 The [second mode](/sparcl/guides/developmentnmode.html) targeted at deveopment of sparcl itself. Instead of requesting data from an online service, data stored in the application itself is used, making it fast to access and easy to change.
 
@@ -22,19 +24,22 @@ Open AR Cloud's mission is to drive the development of open and interoperable sp
 Open architecture for a spatial computing platform defined by OARC.
 
 ### OSCP mode
-The regular usage mode of sparcl, using all the online services of the OSCP, like localistion and content discovery.
+The regular usage mode of sparcl, using all the online services of OSCP, like localisation and content discovery.
 
 ### Placeholder
 One of the content type of sparcl, which will probably used most of the time. Instead of requiring a 3D model to be downloaded for display, the model is defined by a JSON structure (called spatial content record). This record is then interpreted by sparcl and a 3D model generated according to its content.
 
+### spARcl
+Short for `SPatial AR CLoud <viewer>`, a proof of concept for an AR Cloud client application. Its main purpose is to serve as an experimentation platform for OSCP and a base for specialiced, commercial applications. 
+
 ### Spatial Service Discovery (SSD)
-Distributed online service that allows to request available services at a certain location. Defined by OARC as part of OSCP
+Distributed online [service]((https://github.com/OpenArCloud/oscp-spatial-service-discovery)) that allows to request available services at a certain location. Defined by OARC as part of OSCP
 
 ### ssr
 Response in [JSON format](https://github.com/OpenArCloud/oscp-spatial-service-discovery) returned from a SSD request. It contains a list of spatial services available at the queried location.
 
 ### SCD
-Distributed online service that allow to request available content around a certain location. Defined by OARC as part of OSCP.
+Distributed online [service](https://github.com/OpenArCloud/oscp-spatial-content-discovery) that allow to request available content around a certain location. Defined by OARC as part of OSCP.
 
 ### scr
-Response in JSON format returned from a SCD request. It contains a list of geo located content available around the queried location.
+Response in [JSON format](https://github.com/OpenArCloud/oscp-spatial-content-discovery) returned from a SCD request. It contains a list of geo located content available around the queried location.
