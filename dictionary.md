@@ -13,7 +13,7 @@ sparcl's functionality depends on online services to be available and configured
 [Special mode](/sparcl/guides/creationmode.html) for use during content creation, to make it very easy to see the content in an AR environment. In this mode sparcl is served from a local server, offering a text field for the URL of the content to display.
 
 ### Dashboard
-Page inside sparcl allowing access to some internal settings. It is planned as a termporal solution, until it is better understood to which of these settings is actually access needs, and 
+Page inside sparcl allowing access to some internal settings. It is a termporal solution, until it is better understood to which of these settings is actually access needed, and better UX for access is found.
 
 ### Development mode
 The [second mode](/sparcl/guides/developmentmode.html) targeted at deveopment of sparcl itself. Instead of requesting data from an online service, data stored in the application itself is used, making it fast to access and easy to change.
