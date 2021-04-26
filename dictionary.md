@@ -24,7 +24,7 @@ The [second mode](/sparcl/guides/developmentmode.html) targeted at deveopment of
 ### Open AR Cloud (OARC)
 Open AR Cloud's mission is to drive the development of open and interoperable spatial computing technology, data and standards to connect the physical and digital worlds for the benefit of all.
 
-### OSCP
+### Open Spatial Computing Platform (OSCP)
 Open architecture for a spatial computing platform defined by OARC.
 
 ### OSCP mode
@@ -39,11 +39,11 @@ Short for `SPatial AR CLoud <viewer>`, a proof of concept for an AR Cloud client
 ### Spatial Service Discovery (SSD)
 Distributed online [service]((https://github.com/OpenArCloud/oscp-spatial-service-discovery)) that allows to request available services at a certain location. Defined by OARC as part of OSCP
 
-### ssr
+### spatial services record (ssr)
 Response in [JSON format](https://github.com/OpenArCloud/oscp-spatial-service-discovery) returned from a SSD request. It contains a list of spatial services available at the queried location.
 
-### SCD
+### Spatial Content Discovery (SCD)
 Distributed online [service](https://github.com/OpenArCloud/oscp-spatial-content-discovery) that allow to request available content around a certain location. Defined by OARC as part of OSCP.
 
-### scr
+### spatial content record (scr)
 Response in [JSON format](https://github.com/OpenArCloud/oscp-spatial-content-discovery) returned from a SCD request. It contains a list of geo located content available around the queried location.
