@@ -21,10 +21,10 @@ The [second mode](/sparcl/guides/developmentmode.html) targeted at deveopment of
 ### GeoPose
 [Taken from GeoPose SWG site] An upcoming standard from Open Geospatial Consortium (OGC), currently [released as draft](https://github.com/opengeospatial/GeoPose), for geographically-anchored pose (GeoPose) with 6 degrees of freedom referenced to one or more standardized Coordinate Reference Systems (CRSs). The proposed standard will provide an interoperable way to seamlessly express, record, and share the GeoPose of objects in an entirely consistent manner across different applications, users, devices, services, and platforms which adopt the standard or are able to translate/exchange the GeoPose into another CRS.
 
-### Open AR Cloud (OARC)
+### [Open AR Cloud](https://www.openarcloud.org/) (OARC)
 Open AR Cloud's mission is to drive the development of open and interoperable spatial computing technology, data and standards to connect the physical and digital worlds for the benefit of all.
 
-### Open Spatial Computing Platform (OSCP)
+### [Open Spatial Computing Platform](https://www.openarcloud.org/oscp) (OSCP)
 Open architecture for a spatial computing platform defined by OARC.
 
 ### OSCP mode
