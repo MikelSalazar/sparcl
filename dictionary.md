@@ -7,7 +7,7 @@ nav_order: 100
 # Definitions of terms often used in the context of sparcl and Open Spatial Computing Platform.
 
 ### AR modes
-sparcl's functionality depends on online services to be available and configured before it can be useful. To lower this barrier there are specific modes for 2 use cases: [content creation](/sparcl/guides/creationmode.html) and [development](/sparcl/guides/developmentnmode.html). Both work locally, removing the need for online services availability.
+sparcl's functionality depends on online services to be available and configured before it can be useful. To lower this barrier there are specific modes for 2 use cases: [content creation](/sparcl/guides/creationmode.html) and [development](/sparcl/guides/developmentmode.html). Both work locally, removing the need for online services availability.
 
 ### Content creation mode
 [Special mode](/sparcl/guides/creationmode.html) for use during content creation, to make it very easy to see the content in an AR environment. In this mode sparcl is served from a local server, offering a text field for the URL of the content to display.
