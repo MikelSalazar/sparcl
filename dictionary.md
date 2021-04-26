@@ -15,7 +15,7 @@ sparcl's functionality depends on online services to be available and configured
 ### Dashboard
 
 ### Development mode
-The [second mode](/sparcl/guides/developmentnmode.html) targeted at deveopment of sparcl itself. Instead of requesting data from an online service, data stored in the application itself is used, making it fast to access and easy to change.
+The [second mode](/sparcl/guides/developmentmode.html) targeted at deveopment of sparcl itself. Instead of requesting data from an online service, data stored in the application itself is used, making it fast to access and easy to change.
 
 ### Open AR Cloud (OARC)
 Open AR Cloud's mission is to drive the development of open and interoperable spatial computing technology, data and standards to connect the physical and digital worlds for the benefit of all.
