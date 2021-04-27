@@ -12,12 +12,12 @@ To implement it, the following main elements were chosen:
 * [Svelte](https://svelte.dev/) with [snowpack](https://www.snowpack.dev/) for development, with [rollup](https://rollupjs.org/guide/en/) for deployment (tbd)
 Svete is a dream to work with, and the combination with snowpack for development makes it clearly unbeatble for Javascript client side application development. The combination is very new, so there are some features incomplete, but nothing that hinders the development process. 
 
-Until the snowpack bundler is done, rollup is the most likely one to be used in the meantime.
+  Until the snowpack bundler is done, rollup is the most likely one to be used in the meantime.
 
 * WebXR ar-module
 Tests of the AR features of WebXR have been working very well for us already, so there was no question to go ahead using it for sparcl, even when the specs are still very experimental (they say). Especially after we could make camera access work in some way (definitely needs improvement).
 
-sparcl being a proof of concept and experimentation platform, not meant to become a product, helped with this decision, of course.
+  sparcl being a proof of concept and experimentation platform, not meant to become a product, helped with this decision, of course.
 
 * [ogl](https://www.npmjs.com/package/ogl) 3D engine
 I spent a lot of time to find a suitable 3D engine, and ogl is the one we ended up using. It is small, still manages to turn WebGL into something quite usable.
