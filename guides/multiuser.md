@@ -7,7 +7,9 @@ nav_order: 10
 
 # Multi user setup
 
-This is a quick rundown on how to use the multi user feature of sparcl. It can be used to offer an interactive experience with an imported scene.
+This is a quick rundown on how to use the multi user feature of sparcl. It can be used to offer a collective interactive experience with an imported scene.
+
+A simple use case: You're visiting a world heritage site with your friends. On site an interactive AR experience is available, visualizing the mechanics of an historic machinery. Without multi user feature, the machine would be seen differently on every device. With multi user feature, the machine is shown in the same state on every device connected to the service. Exactly as it would be when the actual machine would stay at that location.
 
 ## Preparation for sparcl
 ### Register an headless client with [SSD](https://openarcloud.github.io/sparcl/glossary.html#spatial-service-discovery-ssd)
@@ -28,3 +30,8 @@ So far there is no publicly accessible headless client available. The idea is to
 
 ## Preparation for the content
 
+The complete interactivity needs to be implemented in the scene itself. The only thing to add for multi user functionality is to send events to sparcl. sparcl doesn't interpret these events, but just sends them out to the headless client, which in turn distributes them to all at that very moment to the headless client connected peers.
+
+The events to listen to will be announced to sparcl through the content record received from SCD, as defined above. 
+
+A sample to show off this feature is in the works. When available, the implementation and this guide will be finished.
