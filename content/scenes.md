@@ -21,4 +21,4 @@ The lower part of the diagram above shows how an imported scene can send events 
 
 To make this work, the P2P network needs to be registered with the [service discovery](/sparcl/glossary.html#spatial-service-discovery-ssd), containing the peer ID of an headless client. When sparcl sees that an headless client is available, it connects to it and uses it to distributes the events received from the imported scene. To which events to listen to is announced to sparcl throught the [content record](https://openarcloud.github.io/sparcl/glossary.html#spatial-content-record-scr) of the imported scene.
 
-This will be easy to understand with a sample. And we are currently working on one. Will update this space when it becomes available.
+This will be easy to understand with a sample. Please see the [guide](/sparcl/guides/multiuser.md) for more info. 
