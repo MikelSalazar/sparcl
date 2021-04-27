@@ -22,7 +22,7 @@ So far there is no publicly accessible headless client available. The idea is to
 ![image](https://user-images.githubusercontent.com/231274/115959182-440f2a80-a50b-11eb-82ea-65e6521b6c84.png)
 
 ### Activate P2P connectivity
-![image](https://user-images.githubusercontent.com/231274/116222968-5c6f8700-a74f-11eb-945f-59a9840132d4.png)
+![image](https://user-images.githubusercontent.com/231274/116231290-f4be3980-a758-11eb-87bd-1652e648ec46.png)
 
 ### Restart sparcl to connect to the headless client
 
