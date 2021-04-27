@@ -25,7 +25,7 @@ I spent a lot of time to find a suitable 3D engine, and ogl is the one we ended 
 * [automerge](https://www.npmjs.com/package/automerge), [perge](https://www.npmjs.com/package/perge), [peerjs](https://www.npmjs.com/package/peerjs)
 Reading about AR Cloud, it's written everywhere that multi user is important. Seeing in the article above how easy it seems to be to implement this feature, it had to be in sparcl. 
 
-It wasn't as easy as it seemed, and the synchronisation between peers isn't working fully, yet. But the general functionality is there and is amazing. See the [respective guide](/sparcl/guides/multiuser) for set up info.
+  It wasn't as easy as it seemed, and the synchronisation between peers isn't working fully, yet. But the general functionality is there and is amazing. See the [respective guide](/sparcl/guides/multiuser) for set up info.
 
 * [geodesy](https://www.npmjs.com/package/geodesy)
 Very helpful for geodesic calculations.
