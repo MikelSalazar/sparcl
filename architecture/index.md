@@ -1,10 +1,11 @@
 ---
 layout: default
 title: Architecture
+has_children: true
 nav_order: 2
 ---
 
-# Architecture
+# Overall Architecture of sparcl 
 
 The inspiration for the architecture of sparcl came from an article titled [`A web application with no web server?`](https://medium.com/all-the-things/a-web-application-with-no-web-server-61000a6aed8f#e135) by [Ink & Switch](https://www.inkandswitch.com/). Fits perfectly to an app like sparcl. 
 
