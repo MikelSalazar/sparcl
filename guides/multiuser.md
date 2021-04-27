@@ -32,6 +32,24 @@ So far there is no publicly accessible headless client available. The idea is to
 
 The complete interactivity needs to be implemented in the scene itself. The only thing to add for multi user functionality is to send events to sparcl. sparcl doesn't interpret these events, but just sends them out to the headless client, which in turn distributes them to all at that very moment to the headless client connected peers.
 
-The events to listen to will be announced to sparcl through the content record received from SCD, as defined above. 
+### Register scene with [SCD](https://openarcloud.github.io/sparcl/glossary.html#spatial-content-discovery-scd)
+How to do this, depends on the service provider you use.
 
-A sample to show off this feature is in the works. When available, the implementation and this guide will be finished.
+### Add the names of the events to the record created with the previous step.
+This is the part that is still a bit difficult. That's why we used for samples some hardcoded events. An appropriate property to add this info to an scr is request and should arrive soonish on the SCD from Open AR Cloud. Will likely take a little bit more time for commercial providers.
+
+### Add the events to the scene
+The `postMessage` event is used for the communication between the iframe and sparcl.
+
+```javascript
+// Sending a message to the parent window
+window.parent.postMessage(msg, "*");
+
+// Receiving messages from the parent window
+window.addEventListener("message", msg => {
+	console.log(msg.data);
+});
+
+```
+
+A concrete sample to show off this feature is in the works. When available, the implementation and this guide will be finished.
