@@ -1,0 +1,30 @@
+---
+layout: default
+title: Full Setup
+parent: Guides
+nav_order: 10
+---
+
+# Multi user setup
+
+This is a quick rundown on how to use the multi user feature of sparcl. It can be used to offer an interactive experience with an imported scene.
+
+### Preparation for sparcl
+* Register an headless client with [SSD](https://openarcloud.github.io/sparcl/glossary.html#spatial-service-discovery-ssd)
+How to do this, depends on the service provider you use. The important part here is to add the peer ID for the headless client to the field description - better place to add this info is requested. 
+
+* Run the headless client
+So far there is no publicly accessible headless client available. The idea is to run spacly behind a lambda function. How exactly this can be done is still unclear (to us). But we'll get there
+
+  Until this is figured out, you can start sparcl by adding `?peerid=<peerid>`. `peerid` is the ID set in the step above.
+
+* Open the dashboard
+![image](https://user-images.githubusercontent.com/231274/115959182-440f2a80-a50b-11eb-82ea-65e6521b6c84.png)
+
+* Activate P2P connectivity
+![image](https://user-images.githubusercontent.com/231274/116222968-5c6f8700-a74f-11eb-945f-59a9840132d4.png)
+
+* Restart sparcl to connect to the headless client
+
+### Preparation for the content
+tbd
