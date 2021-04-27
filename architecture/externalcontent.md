@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Full Setup
+title: External scene import
 parent: Architecture
 nav_order: 10
 ---
