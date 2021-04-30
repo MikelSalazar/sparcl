@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Full Setup
-parent: Multi User
+title: Multi User
+parent: Guides
 nav_order: 10
 ---
 
