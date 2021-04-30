@@ -2,7 +2,7 @@
 layout: default
 title: Incubations flag
 parent: Guides
-nav_order: 10
+nav_order: 20
 ---
 
 # Enable required flags
