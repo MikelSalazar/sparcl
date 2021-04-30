@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Multi User
-parent: Flags
+title: Incubations flag
+parent: Guides
 nav_order: 10
 ---
 
