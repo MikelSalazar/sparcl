@@ -29,8 +29,6 @@ This is a simple 3 step process:
 ![image](https://user-images.githubusercontent.com/231274/117124883-278bb180-ad99-11eb-833d-08470e15ff4c.png)
 
 
-Now, when you're returning to the app, the button `Lets's get started` should be active.
-
 ## Allow location access when sparcl is installed
 
 When sparcl is installed on your device, you have the joyce to either open it once in the browser and activate location access as described above, or use the settings dialog of the installed application.
@@ -42,3 +40,5 @@ When sparcl is installed on your device, you have the joyce to either open it on
 
 ### Activate location access
 ![image](https://user-images.githubusercontent.com/231274/117125471-d8924c00-ad99-11eb-8961-1a4984719310.png)
+
+Now, when you're returning to the app, the button `Lets's get started` should be active.
