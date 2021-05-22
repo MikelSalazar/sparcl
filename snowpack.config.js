@@ -16,6 +16,9 @@ module.exports = {
     //   "dest": "/index.html"
     // }
   ],
+  exclude: [
+    '**/_*',
+  ],
   optimize: {
     // bundle: true,
   },
@@ -23,7 +26,7 @@ module.exports = {
     // source: "remote"
   },
   devOptions: {
-    secure: true,
+    secure: false,
     hostname: '0.0.0.0',
     open: 'none'
   },
