@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Scenes
-nav_order: 1
+nav_order: 3
 parent: Content
 has_children: true
 ---
