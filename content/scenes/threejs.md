@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Threejs
-parent: Scene preparation
+parent: Scenes
 nav_order: 2
 ---
 
