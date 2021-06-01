@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Babylonjs
-parent: Scene preparation
+parent: Scenes
+grand_parent: Content
 nav_order: 1
 ---
 
