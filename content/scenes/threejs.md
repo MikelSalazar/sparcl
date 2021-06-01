@@ -2,7 +2,8 @@
 layout: default
 title: Threejs
 parent: Scenes
-nav_order: 2
+grand_parent: Content
+nav_order: 10
 ---
 
 # Preparing Threejs scenes for sparcl
