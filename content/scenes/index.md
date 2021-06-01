@@ -2,6 +2,7 @@
 layout: default
 title: Scenes
 nav_order: 30
+parent: Content
 has_children: true
 ---
 
