@@ -13,7 +13,7 @@ They are loaded into an iframe, placed on top of the WebXR canvas.
 
 An important factor for such scenes is how fast they load. This depends of course heavily 
 on the file size of the assets used in the scene. But already the size of the selected engine
-to create the scene has an influence. 
+to create the scene has a big influence. 
 
 ## Game engines
 
