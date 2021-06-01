@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Scene preparation
+title: Scenes
 nav_order: 30
 has_children: true
 ---
