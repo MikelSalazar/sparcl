@@ -25,7 +25,7 @@ Setting up the creator mode looks like this:
 ### Select the content type and enter the URL to the content when necessary
 ![image](https://user-images.githubusercontent.com/231274/115960806-bdab1680-a513-11eb-8027-498b79159a19.png)
 
-**Placeholder**: This places generated content in the scene. In the future it will be possible to add styling to this content
+**Placeholder**: This places generated content in the scene. In the future it will be possible to add styling to this content. For now, GLSL shaders used for a placeholder can be tested
 
 **Model**: Allow to place a 3D model in gltf or glb format
 
@@ -36,15 +36,18 @@ The URL to enter for Model and Scene will likely look something like this:
 
 https://192.168.x.x:port/folder/file.name
 
-### Download sparcl from github
-Unfortunately the 'Content creation' mode can't be used with sparcl running from the public website (CORS, self signed certificates). That means that it is necessary to [copy the files from github](https://github.com/OpenArCloud/sparcl/releases). You can unzip the files to any location that is convenient for you.
-
-### Save your 3D object or scene inside the sparcl project folder, created with previous step
 
 ### Start a local https server on your computer to give sparcl access to your content
-The absolutely easiest way I found to set up a server on your computer is called [Servez](https://greggman.github.io/servez/). No setup needed at all. [Zappar CLI](https://docs.zap.works/universal-ar/zapworks-cli/) is another option, usable from the command line. But feel free to use any server you're comfortable with. The important detail is that you need to serve over https.
+The absolutely easiest way I found to set up a server on your computer is called [Servez](https://greggman.github.io/servez/). No setup needed at all. [Zappar CLI](https://docs.zap.works/universal-ar/zapworks-cli/) is another option, usable from the command line. But feel free to use any server you're comfortable with. The important detail is that you need to serve over https and set CORS headers.
 
-### Set the root directory of the server to the sparcl project folder
+### Set the root directory of the server to the folder you saved your content in
+
+These are the settings I use:
+![image](https://user-images.githubusercontent.com/231274/121038150-576f1000-c7b0-11eb-8440-c131db5397f2.png)
+
+### Allow self signed certificates on local network
+
+The final step is to allow Chrome to load content over https request from server using a self signed certificate. For this open the [Chrome experiments page](chrome://flags/#allow-insecure-localhost) and enable allow insecure localhost. 
 
 
 Done, finally…
