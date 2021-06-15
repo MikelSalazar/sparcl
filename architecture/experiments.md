@@ -68,7 +68,7 @@ export function loadViewer(key) {
             viewerPromise = null;
     }
 
-    dispatch('change', viewerPromise);
+    return viewerPromise;
 }
 ```
 
