@@ -186,8 +186,7 @@
             case ARMODES.experiment:
                 if ($experimentModeSettings.active) {
                     const selector = new Selector({target: document.createElement('div')})
-                    const settings = await selector.loadSettings($experimentModeSettings.active);
-                    viewerImplementation = settings.viewerPromise;
+                    viewerImplementation = selector.loadViewer($experimentModeSettings.active);
                 }
                 break;
             default:
