@@ -106,6 +106,24 @@ As shown in the code above, sparcl provides a `settings` object where the select
 
 ### Viewer
 
+The viewer file contains the main source for the experiment. When the AR session is started, the function `startAr()` is called. As parameters, sparcl's default implementations for XR and 3D engine are provided. Through them, the complete default functionality of sparcl is available to the experiment. Hopefully this makes it possible to implement the experiment quickly and easily. Viewer functionality as such is available through the imported base `Viewer` component. Its functions are available through the variable `parentInstance`.
+
+While the default XR and 3D engine implementations are provided to the function, feel free to use any other frameworks. Like using Zappar instead to make sparcl work with phone without WebXR compatibility.
+
+Below is kind of a 'hello world' implementation of the viewer. It is the source of the default mode of sparcl, which is completely implemented in the parent viewer. 
+
+The lifecycle functions are:
+- startAR()
+  - Initialisation of the experiment implementation
+- startSession()
+  - Initialisation of WebXR, when used, respectively your own implementation for XR
+- update()
+  - animation loop call, use to update the 3D scene
+- noPose();
+  - WebXR hasn't found a valid pose for the device
+- sessionEnded()
+  - Use to release resources
+
 ```svelte
 <script>
     import Parent from '@components/Viewer';
@@ -132,20 +150,4 @@ As shown in the code above, sparcl provides a `settings` object where the select
 <Parent bind:this={parentInstance} on:arSessionEnded on:brbroadcast />
 ```
 
-
-
-## Dashboard integration
-- Selector
-- Settings
-
-## Instantiation
-- Selector
-- Settings
-
-## Setup
-- startAR
-- startSession
-- Callbacks
--- nopose
--- update
--- session end
+When adding the `Parent` component as above, the dom overlay implemented in the parent viewer is displayed. How to use this for an experiment will be introduced in an upcoming guide.
