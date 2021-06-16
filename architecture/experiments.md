@@ -20,11 +20,11 @@ The Selector is loaded by sparcl into the dashboard. It is the main registration
 - Provides the UI to select an experiment
 - Dynamically loads the settings and viewer files for the experiment
 
-There are many ways to implement the Selector. The provided implementation serves just as a sample to make registering an experiment as easy as possible. It provides a select element to choose an experiment as an example. A list, radio boxes could've also be used. 
+There are many ways to implement the Selector. The provided implementation serves just as a sample to make registering an experiment as easy as possible. It provides a select element to choose an experiment as an example. A list, radio boxes can also be used. 
 
-Just fill in key/value pairs into the object EXPERIMENTTYPES for your experiments, which are then filled into the select element automatically.
+Just fill in key/value pairs into the object `EXPERIMENTTYPES` for your experiments, which are then filled into the select element automatically.
 
-```javascript
+```svelte
 const EXPERIMENTTYPES = {
     // key: value
 };
@@ -42,7 +42,7 @@ const EXPERIMENTTYPES = {
 
 The important function the Selector serves is to dynamically load the settings component (when needed) and viewer implementation (as a ```Promise```) of the experiment. This functionality is provided by the functions `loadSettings` and `loadViewer`. 
 
-```javascript
+```svelte
 export async function loadSettings(key) {
     let settings;
 
@@ -74,12 +74,65 @@ export function loadViewer(key) {
 
 The settings will then be automatically displayed right below the selector when the experiment is selected. The viewer implementation for the experiment is returned as a promise that will be resolved when the AR session is started.
 
-Unfortunately, import functions only allow string literals as parameter, no variables allowed. So they need to be added as shown above.
+Unfortunately, import functions only allow string literals as parameter, no variables allowed. So the paths to the selector and viewer need to be added as shown above. Replace the placeholders in the above strings to fit your paths.
 
 
 ## Required files for experiment
+There are 2 required files to implement for an experiment
+
 - Settings
+  - Defines the UI for the settings to be displayed in the dashboard
 - Viewer
+  - The entry point to your experiments code
+
+### Settings
+No special requirements need to be taken into account for the settings. Very basic component is sufficient. Currently it needs to be a Svelte component, changing this to be a web component is possible. There will be a separate guide on how to get the default styling of the dashboard applied.
+
+```svelte
+<script>
+    export let settings;
+</script>
+
+<dl class="radio">
+    <dt>Localisation</dt>
+    <dd>
+        <input id="xlocalisation" type="checkbox" bind:checked={settings.localisation} />
+        <label for="xlocalisation">Required</label>
+    </dd>
+</dl>
+```
+
+As shown in the code above, sparcl provides a `settings` object where the selected settings can be stored. sparcl cares to persist them and provide them to your viewer implementation. All you need to do is to bind this `settings` object to the values of the form objects used.
+
+### Viewer
+
+```svelte
+<script>
+    import Parent from '@components/Viewer';
+
+    let parentInstance;
+
+    export function startAr(thisWebxr, this3dEngine) {
+        parentInstance.startAr(thisWebxr, this3dEngine);
+
+        startSession();
+    }
+
+    async function startSession() {
+        parentInstance.startSession(parentInstance.update, parentInstance.onSessionEnded, parentInstance.onNoPose,
+            (xr, result, gl) => {
+                xr.glBinding = new XRWebGLBinding(result, gl);
+                xr.initCameraCapture(gl);
+            },
+            ['dom-overlay', 'camera-access', 'anchors', 'local-floor'],
+        );
+    }
+</script>
+
+<Parent bind:this={parentInstance} on:arSessionEnded on:brbroadcast />
+```
+
+
 
 ## Dashboard integration
 - Selector
