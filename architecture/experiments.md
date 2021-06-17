@@ -147,7 +147,7 @@ The lifecycle functions are:
     }
 </script>
 
-<Parent bind:this={parentInstance} on:arSessionEnded on:brbroadcast />
+<Parent bind:this={parentInstance} />
 ```
 
 When adding the `Parent` component as above, the dom overlay implemented in the parent viewer is displayed. How to use this for an experiment will be introduced in an upcoming guide.
