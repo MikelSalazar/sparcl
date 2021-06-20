@@ -7,70 +7,34 @@ nav_order: 20
 
 # Integrating Experiments
 
-The main goal of sparcl is, to serve as a proof of concept and as an experimentation platform around the AR Cloud. This document outlines how experiments can be integrated. An important pre-requisite is, that the experiments source needs to be integrated into the sparcl project from a separate repository. There are several ways to do so. The example uses Git submodules.
+The main goal of sparcl is, to serve as a proof of concept and as an experimentation platform around the AR Cloud in general, specifically the Open Spatial Computing Platform as defined by Open AR Cloud assosiation. This document outlines how experiments can be integrated into sparcl. An important pre-requisite is, that the experiments source needs to be integrated into the sparcl project from a separate repository. This makes it possible that many developers can work on experiments, without stepping on each others toes.
+
+There are several ways to do so and everyone is free to choose the way that fits best to their own way of working. The example here uses Git submodules.
 
 
 ## Provided files from sparcl
-sparcl has by default 2 files in the experiment folder
+Experiments should be added to the folder `/src/experiments`. sparcl provides by default 2 files in this folder to help getting started quickly.
 
-- **Readme**: General information around experiments and links for further information
+- **Readme**: General information around experiments and links to further information
 - **'Empty' Selector component**: Complete select element to choose an experiment in the dashboard
 
-The Selector is loaded by sparcl into the dashboard. It is the main registration point for an experiment. In its provided form it contains all the HTML and (empty) data structures required to select an experiment:
+The Selector is loaded by sparcl into the dashboard automatically. It is the main registration point for an experiment. In its provided form it contains all the HTML and (empty) data structures required:
 - Provides the UI to select an experiment
 - Dynamically loads the settings and viewer files for the experiment
 
-There are many ways to implement the Selector. The provided implementation serves just as a sample to make registering an experiment as easy as possible. It provides a select element to choose an experiment as an example. A list, radio boxes can also be used. 
+There are many ways to implement the Selector. The provided implementation serves just as a sample to help getting started eaily. It provides a select html element to choose an experiment as an example. A list, radio boxes can also be used. 
 
-Just fill in key/value pairs into the object `EXPERIMENTTYPES` for your experiments, which are then filled into the select element automatically.
+To regiter an experiment with sparcl, and to make it selectable in the dashboard, just fill in key/value pairs into the object `EXPERIMENTTYPES` for your experiments. In the sample selector, these entries are then filled into the select element automatically.
 
 ```svelte
 const EXPERIMENTTYPES = {
     // key: value
 };
-
-<select id="experimenttype"
-        on:change={(event) => loadSettings(event.target.value)}
-        disabled="{Object.keys(EXPERIMENTTYPES).length === 0}">
-    <option value="none">None</option>
-    {#each Object.entries(EXPERIMENTTYPES) as [key, value]}
-        <option value="{key}">{value}</option>
-    {/each}
-</select>
-
 ```
 
 The important function the Selector serves is to dynamically load the settings component (when needed) and viewer implementation (as a ```Promise```) of the experiment. This functionality is provided by the functions `loadSettings` and `loadViewer`. 
 
-```svelte
-export async function loadSettings(key) {
-    let settings;
 
-    switch (key) {
-        case EXPERIMENTTYPES.key:
-            settings = await import('@experiments/<subroot>/<experimentname>/Settings');
-            break;
-        default:
-            settings = null;
-    }
-
-    dispatch('change', settings?.default);
-}
-
-export function loadViewer(key) {
-    let viewerPromise;
-
-    switch (key) {
-        case EXPERIMENTTYPES.key:
-            viewerPromise = import('@experiments/<subroot>/<experimentname>/Viewer');
-            break;
-        default:
-            viewerPromise = null;
-    }
-
-    return viewerPromise;
-}
-```
 
 The settings will then be automatically displayed right below the selector when the experiment is selected. The viewer implementation for the experiment is returned as a promise that will be resolved when the AR session is started.
 
@@ -88,21 +52,9 @@ There are 2 required files to implement for an experiment
 ### Settings
 No special requirements need to be taken into account for the settings. Very basic component is sufficient. Currently it needs to be a Svelte component, changing this to be a web component is possible. There will be a separate guide on how to get the default styling of the dashboard applied.
 
-```svelte
-<script>
-    export let settings;
-</script>
+![image](https://user-images.githubusercontent.com/231274/122668779-07357c00-d1ba-11eb-8d75-a24cbdff37a6.png)
 
-<dl class="radio">
-    <dt>Localisation</dt>
-    <dd>
-        <input id="xlocalisation" type="checkbox" bind:checked={settings.localisation} />
-        <label for="xlocalisation">Required</label>
-    </dd>
-</dl>
-```
-
-As shown in the code above, sparcl provides a `settings` object where the selected settings can be stored. sparcl cares to persist them and provide them to your viewer implementation. All you need to do is to bind this `settings` object to the values of the form objects used.
+As shown in the image above, sparcl provides a `settings` object where the selected settings can be stored. sparcl cares to persist them and provide them to your viewer implementation. All you need to do is to bind this `settings` object to the values of the form objects used.
 
 ### Viewer
 
@@ -124,30 +76,7 @@ The lifecycle functions are:
 - sessionEnded()
   - Use to release resources
 
-```svelte
-<script>
-    import Parent from '@components/Viewer';
+![image](https://user-images.githubusercontent.com/231274/122675675-d154bf80-d1da-11eb-9eb0-e6975eb548bd.png)
 
-    let parentInstance;
-
-    export function startAr(thisWebxr, this3dEngine) {
-        parentInstance.startAr(thisWebxr, this3dEngine);
-
-        startSession();
-    }
-
-    async function startSession() {
-        parentInstance.startSession(parentInstance.update, parentInstance.onSessionEnded, parentInstance.onNoPose,
-            (xr, result, gl) => {
-                xr.glBinding = new XRWebGLBinding(result, gl);
-                xr.initCameraCapture(gl);
-            },
-            ['dom-overlay', 'camera-access', 'anchors', 'local-floor'],
-        );
-    }
-</script>
-
-<Parent bind:this={parentInstance} />
-```
 
 When adding the `Parent` component as above, the dom overlay implemented in the parent viewer is displayed. How to use this for an experiment will be introduced in an upcoming guide.
