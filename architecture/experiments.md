@@ -79,4 +79,4 @@ The lifecycle functions are:
 ![image](https://user-images.githubusercontent.com/231274/122675675-d154bf80-d1da-11eb-9eb0-e6975eb548bd.png)
 
 
-When adding the `Parent` component as above, the dom overlay implemented in the parent viewer is displayed. How to use this for an experiment will be introduced in an upcoming guide.
+When adding the `App/Viewer` component to the experiments viewer, the dom overlay implemented in the parent viewer is displayed. How to use this for an experiment will be introduced in an upcoming guide.
