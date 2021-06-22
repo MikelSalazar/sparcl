@@ -7,7 +7,7 @@ nav_order: 20
 
 # Integrating Experiments
 
-The main goal of sparcl is, to serve as a proof of concept and as an experimentation platform around the AR Cloud in general, specifically the Open Spatial Computing Platform as defined by Open AR Cloud assosiation. This document outlines how experiments can be integrated into sparcl. An important pre-requisite is, that the experiments source needs to be integrated into the sparcl project from a separate repository. This makes it possible that many developers can work on experiments, without stepping on each others toes.
+The main goal of sparcl is, to serve as a proof of concept and as an experimentation platform around the AR Cloud in general, specifically the Open Spatial Computing Platform as defined by Open AR Cloud association. This document outlines how experiments can be integrated into sparcl. An important pre-requisite is, that the experiments source needs to be integrated into the sparcl project from a separate repository. This makes it possible that many developers can work on experiments, without stepping on each others toes.
 
 There are several ways to do so and everyone is free to choose the way that fits best to their own way of working. The example here uses Git submodules.
 
@@ -34,11 +34,7 @@ const EXPERIMENTTYPES = {
 
 The important function the Selector serves is to dynamically load the settings component (when needed) and viewer implementation (as a ```Promise```) of the experiment. This functionality is provided by the functions `loadSettings` and `loadViewer`. 
 
-
-
-The settings will then be automatically displayed right below the selector when the experiment is selected. The viewer implementation for the experiment is returned as a promise that will be resolved when the AR session is started.
-
-Unfortunately, import functions only allow string literals as parameter, no variables allowed. So the paths to the selector and viewer need to be added as shown above. Replace the placeholders in the above strings to fit your paths.
+The settings will then be automatically displayed right below the selector when the experiment is selected. The viewer implementation for the experiment is returned as a promise that will be resolved when the AR session is started. 
 
 
 ## Required files for experiment
