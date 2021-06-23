@@ -58,13 +58,13 @@ When opening the dashboard, the experiment entry is displayed when selecting AR 
 
 ## Add `Settings` and `Viewer` component files
 
-The next step is to define settings for the experiment. The Javascript framework used for sparcl is svelte. While there is an intention to use Web Components in sparcl in the future, for now a svelte components is needed to define the settings. This file needs to be added to `src/experiments/<shorthand>/<experimentid>`. With the value of 'arc' for `<shorthand>` and 'particle' for the `experimentid`, the full path for the file looks like this:
+The next step is to define settings for the experiment. The Javascript framework used for sparcl is svelte. While there is an intention to use plain Web Components in sparcl in the future, for now a svelte component is needed to define the settings. This file needs to be added to `src/experiments/<shorthand>/<experimentid>`. With the value of 'arc' for `<shorthand>` and 'particle' for the `experimentid`, the full path for the file looks like this:
 
-    /src/experiments/arc/particle/Settings.svelte
+    `/src/experiments/arc/particle/Settings.svelte`
 
-This is also a good time to create the `Viewer` component, which provides the entrypoint into the experiment. It can extend the functionality of the built in `Viewer` component of sparcl through composition. See below for more info about this. For now, just create this file:
+This is a good time to also create the `Viewer` component, which provides the entrypoint into the experiment. It can extend the functionality of the built in `Viewer` component of sparcl through composition. More info about this. For now, just create this file:
 
-     /src/experiments/arc/particle/Viewer.svelte
+     `/src/experiments/arc/particle/Viewer.svelte`
  
  This should be the resulting file structure:
  
@@ -73,7 +73,7 @@ This is also a good time to create the `Viewer` component, which provides the en
 
 ## Providing settings
 
-A simple settings component could be as simple as this:
+A simple settings component could look like this for example:
 
 ![image](https://user-images.githubusercontent.com/231274/123107439-d794a700-d439-11eb-9cd0-64a0a66bbd7c.png)
 
@@ -108,5 +108,10 @@ sparcl handles the actual settings automatically. To take advantage of this, the
 </dl>
 ```
 
+Changes are persisted automatically. No need for a save button.
+
+The structure of the HTML snippet above mirrors the structure of the dashboard and uses the styles defined there. But you're free to structure the HTML as you wish.
+
 
 ## Implementing the viewer
+
