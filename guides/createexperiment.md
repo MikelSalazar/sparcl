@@ -154,17 +154,26 @@ Other than that, you're free to implement the `Viewer` in any way it's necessary
 The base `Viewer` implementation from sparcl can be extented though composition
 
         import Parent from '@components/Viewer';
-        <Parent />
+        <Parent bind:this={parentInstance} on:arSessionEnded />
         
 When doing so, the lifecycle functions of the component and their minimal implementation looks like this:
 
 - Entry point
 
-        export function startAr(thisWebxr, this3dEngine) {}
+        export function startAr(thisWebxr, this3dEngine) {
+            parentInstance.startAr(thisWebxr, this3dEngine);
+            startSession();
+        }
 
 - AR session startup
 
-        function startSession() {}
+        function startSession() {
+            parentInstance.startSession(<updatecallback>, sessionendedcallback, noposecallback,
+                setupFunction(),
+                [<requiredfeatures>],
+                [<optionalfeatures>]
+            );
+        }
 
 - Animation loop
 
@@ -176,6 +185,8 @@ When doing so, the lifecycle functions of the component and their minimal implem
 
 - AR session end
 
-    function onSessionEnded() {}
+        function onSessionEnded() {
+            parentInstance.onSessionEnded();
+        }
 
 Available state from the base `Viewer`
