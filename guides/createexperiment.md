@@ -16,6 +16,17 @@ This is why sparcl also offers the possibility to write experiments, which remov
 This guide wants to get you started quickly with a new experiment. Feel free to have a look at the [description of the architecture](https://openarcloud.github.io/sparcl/architecture/experiments.html) behind this functionality.
 
 
+## Quick steps
+
+- Fork [sparcl](https://github.com/OpenArCloud/sparcl) and clone it
+- Create repository for experiment and add it as a submodule to the clone above
+- [Register](https://openarcloud.github.io/sparcl/guides/createexperiment.html#register-the-experiment) the experiment
+- [Create](https://openarcloud.github.io/sparcl/guides/createexperiment.html#add-settings-and-viewer-component-files) `Settings` (when needed) and `Viewer` source files
+- [Provide](https://openarcloud.github.io/sparcl/guides/createexperiment.html#provide-settings) `Settings` HTML
+- [Implement](https://openarcloud.github.io/sparcl/guides/createexperiment.html#implement-the-viewer) the `Viewer`
+- 
+
+
 ## Create and add the submodule of the experiment
 
 Source code of an experiment has to come from a separate repository. [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) look like a perfect fit for this requirement. While they seem to have a bit of a negative reputation in the community, the positives outweight the negatives in the way we're using them here. Maybe the article ['Working with submodules'](https://github.blog/2016-02-01-working-with-submodules/) helps to get comfortable with them.
@@ -70,8 +81,29 @@ This is a good time to also create the `Viewer` component, which provides the en
  
 ![image](https://user-images.githubusercontent.com/231274/123080645-719a2680-d41d-11eb-82fb-c6347d1e628b.png)
 
+These files are loaded dynamically into sparcl by the function `importExperiment()` in the `Selector`. Unfortunately, the links to the files need to be string literal, which means the links need to be added manually to this function. 
 
-## Providing settings
+When using the provided `Selector`, this is done by adding a case statement like this (replace all the placeholders with the values of your actual experiment):
+
+```svelte
+            case <experimentkey>:
+                // TODO: Enter the paths to the experiment entry points
+                // The urls have to be a string literals
+                settings = import('@experiments/<subroot>/<experimentname>/Settings');
+                viewer = import('@experiments/<subroot>/<experimentname>/Viewer');
+                break;
+```
+
+With the values for the placeholder as defined above, this results in this line for the `Viewer` for example:
+
+    viewer = import('@experiments/arc/particle/Viewer');
+
+When no settings are needed, the respective line above isn't required.
+
+
+
+
+## Provide settings
 
 A simple settings component could look like this for example:
 
@@ -113,5 +145,5 @@ Changes are persisted automatically. No need for a save button.
 The structure of the HTML snippet above mirrors the structure of the dashboard and uses the styles defined there. But you're free to structure the HTML as you wish.
 
 
-## Implementing the viewer
+## Implement the viewer
 
