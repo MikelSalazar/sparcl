@@ -147,3 +147,35 @@ The structure of the HTML snippet above mirrors the structure of the dashboard a
 
 ## Implement the viewer
 
+The central part of the experiment is the `Viewer`. As with the `Settings` this needs to be a svelte component for now. The intention to allow it to be implemented as a standard Web Component exists.
+
+Other than that, you're free to implement the `Viewer` in any way it's necessary for your experiment. You can take the [implementations for the default AR modes](src/components/viewer-implementations) as guides if you wish.
+
+The base `Viewer` implementation from sparcl can be extented though composition
+
+        import Parent from '@components/Viewer';
+        <Parent />
+        
+When doing so, the lifecycle functions of the component and their minimal implementation looks like this:
+
+- Entry point
+
+        export function startAr(thisWebxr, this3dEngine) {}
+
+- AR session startup
+
+        function startSession() {}
+
+- Animation loop
+
+        function update(time, frame, floorPose) {}
+
+- No pose available handling
+
+        function onNoPose(time, frame, floorPose) {}
+
+- AR session end
+
+    function onSessionEnded() {}
+
+Available state from the base `Viewer`
