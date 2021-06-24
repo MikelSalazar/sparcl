@@ -24,7 +24,7 @@ This guide wants to get you started quickly with a new experiment. Feel free to 
 - [Create](https://openarcloud.github.io/sparcl/guides/createexperiment.html#add-settings-and-viewer-component-files) `Settings` (when needed) and `Viewer` source files
 - [Provide](https://openarcloud.github.io/sparcl/guides/createexperiment.html#provide-settings) `Settings` HTML
 - [Implement](https://openarcloud.github.io/sparcl/guides/createexperiment.html#implement-the-viewer) the `Viewer`
-- 
+
 
 
 ## Create and add the submodule of the experiment
@@ -53,7 +53,7 @@ The submodule command creates 2 new files: .gitmodules and a file representing y
 
 The experiment to run is selected in the [Dashboard](https://openarcloud.github.io/sparcl/glossary.html#dashboard). sparcl comes with `/src/experiments/Selector.svelte`, an example component for the dashboard to choose an experiment using a select HTML element. You're free to change this file in any way you wish, as long as `Promises` of svelte components are sent back to the dashboard.
 
-When using the `Selector.svelte`, add your experiment to the `EXPERIMENTTYPES` object. Let's say the name of the new experiment is 'Particle':
+When using the provided `Selector.svelte`, add your experiment to the `EXPERIMENTTYPES` object. Let's say the name of the new experiment is 'Particle':
 
 ```svelte
     const EXPERIMENTTYPES = {
@@ -69,7 +69,7 @@ When opening the dashboard, the experiment entry is displayed when selecting AR 
 
 ## Add `Settings` and `Viewer` component files
 
-The next step is to define settings for the experiment. The Javascript framework used for sparcl is svelte. While there is an intention to use plain Web Components in sparcl in the future, for now a svelte component is needed to define the settings. This file needs to be added to `src/experiments/<shorthand>/<experimentid>`. With the value of 'arc' for `<shorthand>` and 'particle' for the `experimentid`, the full path for the file looks like this:
+The next step is to define settings for the experiment. The Javascript framework used for sparcl is [svelte](https://svelte.dev/). While there is an intention to use plain Web Components in sparcl in the future for components like this, for now a svelte component is needed to define the settings. This file needs to be added to `src/experiments/<shorthand>/<experimentid>`. With the value of 'arc' for `<shorthand>` and 'particle' for the `experimentid`, the full path for the file looks like this:
 
     `/src/experiments/arc/particle/Settings.svelte`
 
@@ -81,9 +81,9 @@ This is a good time to also create the `Viewer` component, which provides the en
  
 ![image](https://user-images.githubusercontent.com/231274/123080645-719a2680-d41d-11eb-82fb-c6347d1e628b.png)
 
-These files are loaded dynamically into sparcl by the function `importExperiment()` in the `Selector`. Unfortunately, the links to the files need to be string literal, which means the links need to be added manually to this function. 
+These files are loaded dynamically into sparcl by the function `importExperiment()` in the `Selector`. Unfortunately, the links to the files need to be string literals, which means the links need to be added manually to this function. 
 
-When using the provided `Selector`, this is done by adding a case statement like this (replace all the placeholders with the values of your actual experiment):
+When using the provided `Selector`, this is done by adding a case statement like this to the function `importExperiment()` (replace all the placeholders with the values of your actual experiment):
 
 ```svelte
             case <experimentkey>:
@@ -94,7 +94,7 @@ When using the provided `Selector`, this is done by adding a case statement like
                 break;
 ```
 
-With the values for the placeholder as defined above, this results in this line for the `Viewer` for example:
+With the values for the placeholders as defined above, this results in this line for the `Viewer` for example:
 
     viewer = import('@experiments/arc/particle/Viewer');
 
@@ -112,7 +112,7 @@ A simple settings component could look like this for example:
 
 sparcl handles the actual settings automatically. To take advantage of this, the settings component can receive the settings for the specific experiment simply by exporting a field called settings and binding it to the form elements. As a bonus, feel free to define defaults for your settings.
 
-```svelte
+```
 <script>
     export let settings;
 
