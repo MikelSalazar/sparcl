@@ -56,10 +56,10 @@ The experiment to run is selected in the [Dashboard](https://openarcloud.github.
 When using the provided `Selector.svelte`, add your experiment to the `EXPERIMENTTYPES` object. Let's say the name of the new experiment is 'Particle':
 
 ```svelte
-    const EXPERIMENTTYPES = {
-        // TODO: Enter a key/value pairs for experiments. 
-        particle: 'Particle'
-    };
+const EXPERIMENTTYPES = {
+    // TODO: Enter a key/value pairs for experiments. 
+    particle: 'Particle'
+};
 ```
 
 When opening the dashboard, the experiment entry is displayed when selecting AR mode `Experiment`
@@ -69,7 +69,7 @@ When opening the dashboard, the experiment entry is displayed when selecting AR 
 
 ## Add `Settings` and `Viewer` component files
 
-The next step is to define settings for the experiment. The Javascript framework used for sparcl is [svelte](https://svelte.dev/). While there is an intention to use plain Web Components in sparcl in the future for components like this, for now a svelte component is needed to define the settings. This file needs to be added to `src/experiments/<shorthand>/<experimentid>`. With the value of 'arc' for `<shorthand>` and 'particle' for the `experimentid`, the full path for the file looks like this:
+The next step is to define settings for the experiment. The Javascript framework used for sparcl is [svelte](https://svelte.dev/). While there is an intention to use plain Web Components in sparcl in the future for components like this, for now a svelte component is needed to define the settings. This file needs to be added to `src/experiments/<shorthand>/<experimentid>`. With the value of 'arc' for `<shorthand>` and 'particle' for the `<experimentid>`, the full path for the file looks like this:
 
     `/src/experiments/arc/particle/Settings.svelte`
 
@@ -86,21 +86,19 @@ These files are loaded dynamically into sparcl by the function `importExperiment
 When using the provided `Selector`, this is done by adding a case statement like this to the function `importExperiment()` (replace all the placeholders with the values of your actual experiment):
 
 ```svelte
-            case <experimentkey>:
-                // TODO: Enter the paths to the experiment entry points
-                // The urls have to be a string literals
-                settings = import('@experiments/<subroot>/<experimentname>/Settings');
-                viewer = import('@experiments/<subroot>/<experimentname>/Viewer');
-                break;
+case <experimentkey>:
+    // TODO: Enter the paths to the experiment entry points
+    // The urls have to be a string literals
+    settings = import('@experiments/<subroot>/<experimentname>/Settings');
+    viewer = import('@experiments/<subroot>/<experimentname>/Viewer');
+    break;
 ```
 
 With the values for the placeholders as defined above, this results in this line for the `Viewer` for example:
 
     viewer = import('@experiments/arc/particle/Viewer');
 
-When no settings are needed, the respective line above isn't required.
-
-
+When no settings are needed, the respective line for settings above isn't required.
 
 
 ## Provide settings
@@ -160,8 +158,18 @@ When doing so, the lifecycle functions of the component and their minimal implem
 
 - Entry point
 
-        export function startAr(thisWebxr, this3dEngine) {
+        export function startAr(thisWebxr, this3dEngine, options) {
             parentInstance.startAr(thisWebxr, this3dEngine);
+            
+            // Add initialisation code for your implementation here
+            
+            // Store the 3D and XR engines locally when you want to use them for this experiment
+            xrEngine = thisWebxr;
+            tdEngine = this3dEngine;
+            
+            // To access the settings as defined in the Dashboard
+            settings = options?.settings || {};
+            
             startSession();
         }
 
@@ -177,16 +185,49 @@ When doing so, the lifecycle functions of the component and their minimal implem
 
 - Animation loop
 
-        function update(time, frame, floorPose) {}
+        function update(time, frame, floorPose) {
+            // Update your 3D models according the pose provided in the frame
+        }
 
 - No pose available handling
 
-        function onNoPose(time, frame, floorPose) {}
+        function onNoPose(time, frame, floorPose) {
+            // Use to inform user that the XR implementation couldn't determin a pose
+        }
 
 - AR session end
 
         function onSessionEnded() {
+            // Free all the resources created before
+        
             parentInstance.onSessionEnded();
         }
 
-Available state from the base `Viewer`
+### State
+
+When using the base `Viewer` it might be helpful to have access to some state. This is made avalable as svelte context. When adding the lines below to your `Viewer`, the context will be populated by some parent state.
+
+```svelte
+import { setContext } from 'svelte';
+import { writable } from 'svelte/store';
+
+let parentState = writable();
+setContext('state', parentState);
+```
+
+For now, these states are added:
+- showFooter
+    - Boolean, show / hide the overlay
+- isLocalisationDone
+    - Boolean, was localisation done
+- isLocalized
+    -  Boolean, localisation was done successfully when true
+- isLocalizing
+    - Boolean, localisation is in progress when true
+
+
+## Finally
+
+Following the steps above should give you an empty experiment to get you started. 
+
+The next steps would be to understand what features of the default 3D and XR engine can be used. For now the implementations of the provided AR modes in `src/components/viewer-implementations` help to give you an idea. Propper guides will follow.
