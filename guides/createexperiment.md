@@ -230,4 +230,4 @@ For now, these states are added:
 
 Following the steps above should give you an empty experiment to get you started. 
 
-The next steps would be to understand what features of the default 3D and XR engine can be used. For now the implementations of the provided AR modes in `src/components/viewer-implementations` help to give you an idea. Propper guides will follow.
+The next steps would be to understand what features of the default 3D, XR engine and the overlay can be used. For now the implementations of the provided AR modes in `src/components/viewer-implementations` help to give you an idea. Propper guides will follow.
