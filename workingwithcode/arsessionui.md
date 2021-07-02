@@ -1,7 +1,7 @@
 ---
 layout: default
 title: UI during AR session
-parent: Guides
+parent: Working with code
 nav_order: 40
 ---
 
