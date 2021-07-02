@@ -7,24 +7,7 @@ nav_order: 30
 
 # Setting up a new experiment
 
-The main aim of sparcl is to consume content from the AR Cloud. To make this as easy and enjoyable as possible for the end user is clearly the highest priority for the development process of sparcl. 
-
-One important requirement for this is, to make sure the content received from an AR Cloud provider is displayed correctly, and it can be used as intendet. For this, sparcl offers separate modes to help with content creation and development. While we think that these modes are quite useful as they are, because they take away any dependency on a correctly set up server configuration, they might be somewhat inflexible for some requirements.
-
-This is why sparcl also offers the possibility to write experiments, which remove any restrictions. The developer can use the functionality sparcl offers or create something completely new, even replacing the XR or 3D engine.
-
-This guide wants to get you started quickly with a new experiment. Feel free to have a look at the [description of the architecture](https://openarcloud.github.io/sparcl/architecture/experiments.html) behind this functionality.
-
-
-## Quick steps
-
-- Fork [sparcl](https://github.com/OpenArCloud/sparcl) and clone it
-- Create repository for experiment and add it as a submodule to the clone above
-- [Register](https://openarcloud.github.io/sparcl/guides/createexperiment.html#register-the-experiment) the experiment
-- [Create](https://openarcloud.github.io/sparcl/guides/createexperiment.html#add-settings-and-viewer-component-files) `Settings` (when needed) and `Viewer` source files
-- [Provide](https://openarcloud.github.io/sparcl/guides/createexperiment.html#provide-settings) `Settings` HTML
-- [Implement](https://openarcloud.github.io/sparcl/guides/createexperiment.html#implement-the-viewer) the `Viewer`
-
+These are the detailed steps to setup a new experiment.
 
 
 ## Create and add the submodule of the experiment
