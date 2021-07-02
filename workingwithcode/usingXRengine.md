@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Using the XR engine
-parent: Guides
+parent: Working with code
 nav_order: 50
 ---
 
