@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Creating an experiment
-parent: Guides
+parent: Working with code
 nav_order: 30
 ---
 
