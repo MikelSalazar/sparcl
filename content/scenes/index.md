@@ -40,7 +40,7 @@ to create the scene has a big influence.
 | name          | base size   | version   | taken from                  |
 |:--------------|:------------|:----------|:----------------------------|
 | CopperLicht   |    90KB     |  v1.15    |  Export from CopperCube     |
-|  Playcanvas   |   350KB     |   1.41.2  |  Export of Tutorial         |
+|  Playcanvas (no physics)   |   350KB     |   1.41.2  |  Export of Tutorial         |
 |  Wonderland   |   1.3MB     |   0.8.4   |  Export from First Project  |
 |      Zappar   |     5MB     |   0.3.6   |  Tutorial project           |
 
