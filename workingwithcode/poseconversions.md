@@ -2,7 +2,7 @@
 layout: default
 title: Pose Conversions
 parent: Working with code
-nav_order: 50
+nav_order: 60
 ---
 
 An important feature of sparcl is the conversion of poses. It needs to handle poses in GeoPose format, local format of the XR and 3D engine used. When all works as expected and the code is in good shape, this functionality might even be made available as an npm module.
