@@ -6,8 +6,8 @@
 /*
     Store for application state
 */
-
-
+// NOTE Persisting checkbox values into Svelte local storage is described here:
+// https://chasingcode.dev/blog/svelte-persist-state-to-localstorage/
 import { readable, writable, derived, get } from 'svelte/store';
 
 import { LOCATIONINFO, SERVICE, ARMODES, CREATIONTYPES, EXPERIMENTTYPES, PLACEHOLDERSHAPES } from "./core/common.js";
@@ -35,6 +35,11 @@ export const arIsAvailable = readable(false, (set) => {
 export const isLocationAccessAllowed = readable(false, (set) => {
     let currentResult;
     const stateResult = (state) => state === 'granted';
+
+    // NOTE: navigator.permissions is undefined on iOS
+    if (navigator == undefined || navigator.permissions == undefined) {
+        return () => set(false);
+    }
 
     navigator.permissions.query({name:'geolocation'})
         .then((result) => {
@@ -206,8 +211,9 @@ export const availableP2pServices = derived(ssr, ($ssr, set) => {
             }));
     }
 
-    if (p2pServices.length > 0 && Object.keys(get(selectedP2pService)).length === 0) {
-        selectedP2pService.set(p2pServices[0]);
+    // TODO: Make sure that stored selected service is still valid
+    if (p2pServices.length > 0 && get(selectedP2pService) === 'none') {
+        selectedP2pService.set(p2pServices[0].id);
     }
 
     set(p2pServices);
@@ -246,7 +252,11 @@ export const selectedContentServices = writable({});
  *
  * @type {Writable<SERVICE>}
  */
-export const selectedP2pService = writable('none');
+const storedSelectedP2pService = localStorage.getItem('selectedp2pstorage');
+export const selectedP2pService = writable(storedSelectedP2pService || 'none');
+selectedP2pService.subscribe(value => {
+    localStorage.setItem('selectedp2pstorage', value);
+})
 
 
 /**
@@ -276,16 +286,19 @@ allowP2pNetwork.subscribe(value => {
     localStorage.setItem('allowP2pNetwork', value === true ? 'true' : 'false');
 })
 
-
 /**
  * The current state of the peer to peer network connection.
  *
  * @type {Writable<string>}
  */
-export const p2pNetworkState = writable('none');
+export const p2pNetworkState = writable('not connected');
 
-
-
+/**
+ * Alphanumeric uuid string that identifies this client in the P2P network.
+ *
+ * @type {Writable<string>}
+ */
+export const peerIdStr = writable('none');
 
 /**
  * Appends the captured image used for localisation to the body an an image element.

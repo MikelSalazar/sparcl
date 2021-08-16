@@ -11,6 +11,9 @@ import { v4 as uuidv4 } from 'uuid';
 import Perge from '@thirdparty/perge.modern';
 import Automerge, {change} from 'automerge'
 import Peer from 'peerjs';
+import { p2pNetworkState, peerIdStr } from '@src/stateStore';
+import { get } from 'svelte/store';
+import { availableP2pServices, selectedP2pService } from '@src/stateStore';
 
 
 let instance;
@@ -45,6 +48,11 @@ export function connect(headlessPeerId, isHeadless = false, updateftn) {
     setupPeerEvents(headlessPeerId, isHeadless);
 }
 
+export function connectWithUrl(headlessPeerId, isHeadless = true, url, port, updateftn) {
+    setupPergeWithUrl(headlessPeerId, url, port);
+    setupPeerEvents(headlessPeerId, isHeadless);
+}
+
 /**
  * Disconnect the device from the peer to peer network.
  */
@@ -70,7 +78,7 @@ export function send(data) {
  * Called when an update was received over the network.
  */
 function updateReceived() {
-    console.log('Received', JSON.stringify(docSet.docs, null, 2));
+    //console.log('Received', JSON.stringify(docSet.docs, null, 2));
 
     if (updateFunction) {
         // TODO: There has to be a better way to get to the content of a doc
@@ -84,10 +92,26 @@ function updateReceived() {
  * @param peerId  String        The peer ID to register with on the signaling server
  */
 function setupPerge(peerId) {
-    const peer = new Peer(peerId, {
-        host:'peerjs-server.herokuapp.com', secure:true, port:443
-    })
+    const selected = get(selectedP2pService);
+    const service = get(availableP2pServices).reduce((result, service) => service.id === selected ? service : result, {});
+    const port = service?.properties?.reduce((result, prop) => prop.type === 'port' ? (prop.value) : result, '');
 
+    setupPergeWithUrl(peerId, service?.url, port)
+}
+
+function setupPergeWithUrl(peerId, url, port) {
+    //NOTE: servers in use:
+    //{} // default, hosted by peerjs.com, see https://peerjs.com/peerserver.html
+    //{host: 'peerjs-server.herokuapp.com', secure:true, port:443} // heroku server
+    //{host: 'rtc.oscp.cloudpose.io', port: 5678, secure:true, key: 'peerjs-mvtest', path: '/', debug: 2} // hosted by OSCP
+
+    const options = url && port ? {
+        host: url,
+        secure: true,
+        port: port
+    } : {};
+
+    const peer = new Peer(peerId, options);
     instance = new Perge(peerId, {
         decode: JSON.parse, // msgpack or protobuf would also be a good option
         encode: JSON.stringify,
@@ -112,31 +136,49 @@ function setupPerge(peerId) {
 function setupPeerEvents(headlessPeerId, isHeadless) {
     //Emitted when a connection to the PeerServer is established.
     instance.peer.on('open', (id) => {
-        console.log('Connection to the PeerServer established. Peer ID ' + id);
+        let msg = 'Connection to the PeerServer established. Peer ID ' + id;
+        console.log(msg);
+        p2pNetworkState.set(msg)
+        peerIdStr.set(id);
 
         if (!isHeadless) {
-            console.log('Connecting to headless');
-            instance.connect(headlessPeerId);
+            msg = 'Connecting to headless client: ' + headlessPeerId;
+            console.log(msg);
+            p2pNetworkState.set(msg);
+            let dataConnection = instance.connect(headlessPeerId);
+            if (dataConnection != null) {
+                msg = 'Connected to headless client.\nMy PeerId: ' + id;
+                console.log(msg);
+                p2pNetworkState.set(msg);
+            }
         }
     });
 
     // Emitted when a new data connection is established from a remote peer.
     instance.peer.on('connection', (connection) => {
-        console.log('Connection established with remote peer: ' + connection.peer);
+        let msg = 'Connection established with remote peer: ' + connection.peer;
+        console.log(msg);
+        p2pNetworkState.set(msg);
     });
 
     // Errors on the peer are almost always fatal and will destroy the peer.
     instance.peer.on('error', (error) => {
-        console.error('Error:' + error)
+        let msg = 'Error:' + error;
+        console.error(msg);
+        p2pNetworkState.set(msg);
     })
 
     // Emitted when the peer is disconnected from the signalling server
     instance.peer.on('disconnected', () => {
-        console.log('Disconnected from PeerServer')
+        let msg = 'Disconnected from PeerServer';
+        console.log(msg);
+        p2pNetworkState.set(msg);
     });
 
     // Emitted when the peer is destroyed and can no longer accept or create any new connections
     instance.peer.on('close', () => {
-        console.log('Connection closed.');
+        let msg = "Connection closed";
+        console.log(msg);
+        p2pNetworkState.set(msg);
     });
 }
